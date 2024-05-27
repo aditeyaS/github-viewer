@@ -25,11 +25,11 @@ const Stats: React.FC<StatsProps> = ({
       </div>
       <div className="flex flex-col items-center">
         <h2 className="text-4xl font-bold text-secondary">{repositories}</h2>
-        <span>repositories</span>
+        <span>public repositories</span>
       </div>
       <div className="flex flex-col items-center">
         <h2 className="text-4xl font-bold text-secondary">{gists}</h2>
-        <span>gists</span>
+        <span>public gists</span>
       </div>
     </div>
   );

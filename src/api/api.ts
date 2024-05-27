@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const instance = axios.create({
+const api = axios.create({
   baseURL: "https://api.github.com/",
   timeout: 3000,
   headers: {
@@ -8,6 +8,4 @@ export const instance = axios.create({
   },
 });
 
-// const getUserData = async (username: string) => {
-//   const response = ;
-// };
+export default api;
