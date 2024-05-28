@@ -4,10 +4,14 @@
   "author": {
     "name": "Aditeya Srivastava"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aditeyaS/github-viewer"
+  },
   "private": false,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://aditeyas.github.io/github-viewer",
+  "homepage": "https://github-viewer-4bx3.onrender.com",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
