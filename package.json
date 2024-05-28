@@ -1,8 +1,13 @@
 {
   "name": "github-viewer",
-  "private": true,
+  "description": "GitHub Viewer",
+  "author": {
+    "name": "Aditeya Srivastava"
+  },
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://aditeyas.github.io/github-viewer",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
