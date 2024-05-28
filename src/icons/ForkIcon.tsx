@@ -1,6 +1,6 @@
 const ForkIcon = () => {
   return (
-    <svg className="h-6 w-6 fill-accent" viewBox="0 0 32 32" version="1.1">
+    <svg className="h-4 w-4 fill-accent" viewBox="0 0 32 32" version="1.1">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"

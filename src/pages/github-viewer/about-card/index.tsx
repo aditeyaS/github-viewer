@@ -1,21 +1,22 @@
 import React from "react";
 import CompanyIcon from "../../../icons/CompanyIcon";
-import JobSearchIcon from "../../../icons/JobSearchIcon";
 import LocationIcon from "../../../icons/LocationIcon";
 import UserModel from "../../../model/UserModel";
 import Avatar from "./Avatar";
 import Socials from "./Socials";
 import Stats from "./Stats";
+import { SocialModel } from "../../../model/SocialModel";
 
 interface AboutCardProps {
   userData: UserModel;
+  socialsData: SocialModel[];
 }
 
-const AboutCard: React.FC<AboutCardProps> = ({ userData }) => {
+const AboutCard: React.FC<AboutCardProps> = ({ userData, socialsData }) => {
   return (
     <div className="card shadow-lg compact bg-base-100 mt-10">
       <div className="card-body">
-        <div className="flex gap-5 items-center">
+        <div className="flex flex-col gap-5 justify-center items-center">
           <Avatar username={userData.login} />
           <Stats
             followers={userData.followers}
@@ -23,27 +24,38 @@ const AboutCard: React.FC<AboutCardProps> = ({ userData }) => {
             repositories={userData.public_repos}
             gists={userData.public_gists}
           />
-        </div>
-        <div className="flex flex-col gap-3">
-          <h1 className="text-6xl text-primary font-bold">{userData.name}</h1>
-          <span className="text-secondary text-lg">{userData.bio}</span>
-          <div>
-            <div className="border border-2 border-success w-max p-2 flex gap-4 items-center">
-              <JobSearchIcon />
-              <span className="text-lg text-success">Open for work</span>
+          {userData.name && (
+            <h1 className="text-6xl text-primary">{userData.name}</h1>
+          )}
+          {userData.bio && (
+            <span className="text-secondary text-lg">{userData.bio}</span>
+          )}
+          {userData.hireable && (
+            <h3 className="bg-success text-success-content py-1 px-2 rounded text-lg">
+              #OpenToWork
+            </h3>
+          )}
+          {userData.company && userData.location && (
+            <div className="flex flex-row gap-5">
+              {userData.company && (
+                <div className="flex gap-2 items-center">
+                  <CompanyIcon />
+                  {userData.company}
+                </div>
+              )}
+              {userData.location && (
+                <div className="flex gap-2 items-center">
+                  <LocationIcon />
+                  {userData.location}
+                </div>
+              )}
             </div>
-          </div>
-          <div className="flex flex-row gap-5">
-            <div className="flex gap-2">
-              <CompanyIcon />
-              {userData.company}
-            </div>
-            <div className="flex gap-2">
-              <LocationIcon />
-              {userData.location}
-            </div>
-          </div>
-          <Socials />
+          )}
+          <Socials
+            username={userData.login}
+            blog={userData.blog}
+            socials={socialsData}
+          />
         </div>
       </div>
     </div>
