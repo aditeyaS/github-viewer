@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createHashRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/home";
 import GithubViewer from "./pages/github-viewer";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
