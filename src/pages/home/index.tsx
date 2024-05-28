@@ -32,13 +32,13 @@ const Home = () => {
           {username && <kbd className="kbd kbd-xs">return</kbd>}
         </label>
         <div className="flex gap-2">
-          <div className="border border-accent px-2 py-1 flex gap-2 text-accent">
+          <div className="border border-accent px-2 py-1 flex gap-2 text-accent items-center">
             <StarIcon />5 starts
           </div>
-          <div className="border border-accent px-2 py-1 flex gap-2 text-accent">
+          <div className="border border-accent px-2 py-1 flex gap-2 text-accent items-center">
             <ForkIcon />2 forks
           </div>
-          <div className="border border-accent px-2 py-1 flex gap-2 text-accent">
+          <div className="border border-accent px-2 py-1 flex gap-2 text-accent items-center">
             <IssuesIcon />2 issues
           </div>
         </div>
