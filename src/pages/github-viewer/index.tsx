@@ -7,13 +7,13 @@ import UserModel from "../../model/UserModel";
 import ReadmeMd from "./readme-md";
 import { SocialModel } from "../../model/SocialModel";
 import Repositories from "./repositories";
-import { RepositoryModel } from "../../model/RepositoryModel";
 
 const GithubViewer = () => {
   const { username } = useParams();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isValidUser, setIsValidUser] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserModel>();
   const [socialsData, setSocialsData] = useState<SocialModel[]>([]);
-  const [repoitories, setRepositories] = useState<RepositoryModel[]>([]);
 
   const loadData = useCallback(async () => {
     try {
@@ -23,16 +23,13 @@ const GithubViewer = () => {
         `users/${username}/social_accounts`
       );
       const socialsResponseData: SocialModel[] = socialsResponse.data;
-      const reposResponse = await api.get(
-        `users/${username}/repos?sort=updated`
-      );
-      // https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user
-      const reposResponseData: RepositoryModel[] = reposResponse.data;
-      setRepositories(reposResponseData);
       setSocialsData(socialsResponseData);
       setUserData(userResponseData);
+      setLoading(false);
+      setIsValidUser(true);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }, [username]);
 
@@ -43,9 +40,17 @@ const GithubViewer = () => {
   return (
     <div className="h-full w-full bg-base-300 p-10 flex flex-col gap-5">
       <Topbar />
-      {userData && <AboutCard userData={userData} socialsData={socialsData} />}
-      <Repositories repos={repoitories} />
-      <ReadmeMd />
+      {loading ? (
+        <>loading</>
+      ) : isValidUser && userData ? (
+        <div className="flex flex-col gap-5">
+          <AboutCard userData={userData} socialsData={socialsData} />
+          <Repositories username={userData.login} />
+          <ReadmeMd />
+        </div>
+      ) : (
+        <>Invalid</>
+      )}
     </div>
   );
 };
