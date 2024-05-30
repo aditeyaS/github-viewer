@@ -28,7 +28,6 @@ const GithubViewer = () => {
       setLoading(false);
       setIsValidUser(true);
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   }, [username]);
